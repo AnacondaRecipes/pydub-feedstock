@@ -21,13 +21,13 @@ requirements:
     - wheel
   run:
     - python
+    - audioop-lts  # [py>=313]
 
 test:
   imports:
     - pydub
   requires:
     - pip
-    - audioop-lts # required by pip check
   commands:
     - pip check
 
