@@ -10,28 +10,35 @@ source:
   sha256: 980a33ce9949cab2a569606b65674d748ecbca4f0796887fd6f46173a7b0d30f
 
 build:
-  noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
-    - python >=3.6
+    - python
 
 test:
   imports:
     - pydub
+  requires:
+    - pip
+    - audioop-lts # required by pip check
+  commands:
+    - pip check
 
 about:
-  home: http://pydub.com
+  home: https://pydub.com
   license: MIT
   license_file: LICENSE
   license_family: MIT
   summary: Manipulate audio with a simple and easy high level interface
-  doc_url: http://pydub.com
+  description: Manipulate audio with an simple and easy high level interface
+  doc_url: https://pydub.com
   dev_url: https://github.com/jiaaro/pydub
 
 extra:
